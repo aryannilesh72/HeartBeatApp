@@ -28,8 +28,9 @@ export class AppComponent {
   title = 'HearBeat';
   loader: Boolean;
   message: string;
-  hearRate: number;
+  heartRate: number;
   error: string;
+  updated: boolean;
 
   myControl = new FormControl();
 
@@ -49,6 +50,7 @@ export class AppComponent {
   constructor() { }
 
   ngOnInit() {
+    this.updated = false;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -114,11 +116,16 @@ export class AppComponent {
       var index = this.options.findIndex(obj => obj.id == this.selectedOpt.id);
       this.options[index] = this.p1;
       this.myControl3.reset();
+      this.error='';
+      this.updated = true;
     }
   }
   check(){
-    if(this.hearRate<30 || this.hearRate>160){
+    this.updated = false;
+    if(this.heartRate<30 || this.heartRate>160){
       this.error='HeartBeat Value Should be between 30-160';
+    } else {
+      this.error='';
     }
   }
 

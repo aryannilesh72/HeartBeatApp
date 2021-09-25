@@ -91,11 +91,13 @@
           <br/>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>HeartBeat</mat-label>
-            <input type="number" matInput [formControl]="myControl3" [(ngModel)]="hearRate">
-          </mat-form-field>
-          <span *ngIf="hearRate<30 || hearRate>160">HeartBeat Value Incorrect<br/></span>
+            <input type="number" matInput [formControl]="myControl3" [(ngModel)]="heartRate">
+          </mat-form-field><br/>
+          <span *ngIf="heartRate && (heartRate<30 || heartRate>160)">HeartBeat Value Incorrect<br/></span>
             <br/>
-          <button [disabled]="hearRate<30 || hearRate>160">Capture</button>
+          <button [disabled]="heartRate<30 || heartRate>160">Capture</button>
+            <br/>
+            <span *ngIf="updated">HeartBeat Recorded</span>
         </form>
       </div>
       <div *ngSwitchCase="'view'">
